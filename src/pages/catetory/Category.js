@@ -5,6 +5,7 @@ import CategoryItems from "./CategoryItems";
 const Category = () => {
   const [products, setAllProducts] = useState([]);
   const [categories, setAllCatagories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`https://furniture-resale-server.vercel.app/products`)
@@ -15,6 +16,7 @@ const Category = () => {
       .then((res) => res.json())
       .then((data) => {
         setAllCatagories(data);
+        setLoading(false);
       });
   }, []);
 
@@ -25,15 +27,26 @@ const Category = () => {
           <h2 className="underline underline-offset-1 font-semibold ">
             Catagory
           </h2>
-          {categories.map((singleCategory, i) => (
-            <Link to={`/category/${singleCategory.category}`} key={i}>
-              <p className="my-2 font-bold text-xl uppercase  ">
-                <button className=" btn btn-ghost ">
-                  {singleCategory.category}
-                </button>
-              </p>
-            </Link>
-          ))}
+
+          <div>
+            {loading ? (
+              <div className="flex justify-center items-center h-full">
+                <div className="w-6 h-6 border-2 border-dashed rounded-full animate-spin border-green-900"></div>
+              </div>
+            ) : (
+              <div>
+                {categories.map((singleCategory, i) => (
+                  <Link to={`/category/${singleCategory.category}`} key={i}>
+                    <p className="my-2 font-bold text-xl uppercase  ">
+                      <button className=" btn btn-ghost ">
+                        {singleCategory.category}
+                      </button>
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="flex-1 bg-slate-400  p-6">
