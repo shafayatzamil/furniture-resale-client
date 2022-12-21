@@ -1,4 +1,4 @@
-# Furniture-resale-client
+# Scrap-tools-ltd
 
 live-site-link: [furniture-resale-client (https://furniture-client.web.app/)]
 

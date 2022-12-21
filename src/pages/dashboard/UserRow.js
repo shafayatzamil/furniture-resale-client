@@ -39,9 +39,6 @@ const UserRow = ({ user, refe }) => {
   const makeAdmin = (email) => {
     fetch(`https://furniture-resale-server.vercel.app/user/admin/${email}`, {
       method: "PUT",
-      // headers: {
-      //   authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      // },
     })
       .then((res) => {
         if (res.status === 403) {
